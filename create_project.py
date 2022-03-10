@@ -1,8 +1,5 @@
 #### connect four
 
-from secrets import choice
-
-
 user1 = input("Hello Player 1, welcome to Connect Four! What is your name? > ")
 user2 = input("Hello Player 2, welcome to Connect Four! What is your name? > ")
 game = 'running'
@@ -25,17 +22,22 @@ def print_board(board):
 
 print("Here is the board:")
 print_board(board)
-count = 0
+turn = 0
 
 while game == 'running':
-    if count % 2 == 0.0:
+    if turn % 2 == 0.0:
         choice_1_column = int(input("What column would you like to place the X?"))
-        board[choice_1_column] = 'X'
-        count = count + 1
+        for i in board:
+            #### I have a problem here where I need to figure out how to do the gravity for connnect four ####
+            if board[i][choice_1_column] == '-':
+                board[i][choice_1_column] = 'X'
+                break
+            elif board[i][choice_1_column] == 'X' or board[i][choice_1_column] == 'O':
+                pass
+        turn = turn + 1
         print_board(board)
-    if count % 2 == 1.0:
+    if turn % 2 == 1.0:
         choice_2_column = int(input("What column would you like to place the O?"))
         board[choice_2_column] = 'O'
-        count = count + 1
+        turn = turn + 1
         print_board(board)
-
