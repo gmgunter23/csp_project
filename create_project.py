@@ -34,12 +34,12 @@ def winning_conditions(board):
     global game
     #print("checking winning conditions...")
     # webstite used to help on this portion of code: https://stackoverflow.com/questions/29949169/python-connect-4-check-win-function
-    row = len(board[0])
+    height = len(board[0])
     width = len(board)
-    #Horizontal Check for win
 
+    #Horizontal Check for win
     for y in range(width):
-        for x in range(row - 3):
+        for x in range(height - 3):
             if board[y][x] == 'X' and board[y][x + 1] == 'X' and board[y][x + 2] == 'X' and board[y][x + 3] == 'X':
                 print(f"Congratiulations {user1}, you won the Game!")
                 game = False
@@ -47,14 +47,23 @@ def winning_conditions(board):
                 print(f"Congratulations {user2}, you won the Game!")
                 game = False
 
+    # Vertical Check for win
+    ########################## FINISH THIS AND FINISH PROGRAM ###########################
+    for row in range(height):
+        for column in range(width - 3):
+            if board[column][row] == 'X' and board[column][row + 1] == 'X' and board[column][row + 2] == 'X' and board[column][row + 3] == 'X':
+                print(f"Congratulations {user1}, you won the Game!")
+                game = False
+            elif board[column][row] == 'O' and board[column][row + 1] == 'O' and board[column][row + 2] == 'O' and board[column][row + 3] == 'O':
+                print(f"Congratulations {user2}, you won the Game!")
+                game = False
+
 
 print_board(board)
 turn = 0
 while game:
-    print("NEITHER PLAYER TURN")
     winning_conditions(board)
     if turn % 2 == 0:
-        print("PLAYER 1 TURN")
         winning_conditions(board)
         choice_1_column = int(input("What column would you like to place the X?"))
         run = 'run'
@@ -99,7 +108,6 @@ while game:
         turn = turn + 1
         print_board(board)
     else:
-        print("PLAYER 2 TURN")
         winning_conditions(board)
         choice_2_column = int(input("What column would you like to place the O?"))
         run = 'run'
